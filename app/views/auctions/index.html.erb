@@ -1,0 +1,27 @@
+<% title "Auctions" %>
+
+<p><%= link_to "New Auction", new_auction_path %></p>
+
+<%= content_tag "table", id: "auctions", data: {url: request.fullpath } do %>
+  <tr>
+    <th>Name</th>
+    <th>End time</th>
+    <th>Till the end</th>
+    <th>Type</th>
+    <th colspan="4">Actions</th>
+  </tr>
+  <% for auction in @auctions %>
+    <tr>
+      <td><%= auction.name %></td>
+      <td><%= auction.end_date.strftime("%d/%m/%y - %H:%M") %></td>
+      <td id="time4auction_<%= auction.id %>"><%= auction.till_the_end ?  auction.till_the_end : '<span class="red">expired</span>'.html_safe %></td>
+      <td><%= auction.auction_type.name %></td>
+      <td><%= link_to "Show", auction %></td>
+      <td><%= link_to "Edit", edit_auction_path(auction) %></td>
+      <td><%= link_to "Destroy", auction, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+<% end %>
+
+<br />
+<%= will_paginate @auctions %>

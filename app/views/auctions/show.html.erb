@@ -1,0 +1,24 @@
+<% title "Auction" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @auction.name %>
+</p>
+<p>
+  <strong>End date:</strong>
+  <%= @auction.end_date %>
+</p>
+<p>
+  <strong>Till end date:</strong>
+  <%= @auction.end_date > Time.now ? time_ago_in_words(@auction.end_date, true) : 'expired' %>
+</p>
+<p>
+  <strong>Auction type:</strong>
+  <%= @auction.auction_type.name  %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_auction_path(@auction) %> |
+  <%= link_to "Destroy", @auction, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", auctions_path %>
+</p>

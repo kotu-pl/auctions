@@ -1,0 +1,24 @@
+<%= form_for @auction do |f| %>
+
+  <%= f.error_messages %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :auction_type_id %><br />
+    <%= f.collection_select :auction_type_id, AuctionType.all, :id, :name  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :end_date %><br />
+    <%= f.datetime_select :end_date %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
