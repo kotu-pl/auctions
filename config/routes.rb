@@ -2,6 +2,7 @@ Auctions::Application.routes.draw do
   resources :auctions
 
   root :to => 'auctions#index'
+  match ".json" => 'auctions#index', defaults: { format: :json }
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
