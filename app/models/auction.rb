@@ -6,8 +6,11 @@ class Auction < ActiveRecord::Base
 
   belongs_to :auction_type
 
-  validates_presence_of :auction_type_id, :name, :end_date
+  validates_presence_of :auction_type_id, :end_date
   validate :date_validator
+
+  validates :name, :presence => true,
+            :length => {minimum: 2}
 
   default_scope joins(:auction_type).readonly(false).order('weight ASC, end_date ASC')
 
